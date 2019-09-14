@@ -104,7 +104,7 @@ export default {
     border-radius: 6px
     position: absolute
     text-align: left
-    z-index: -1
+    z-index: 3
     .socket_type
       font-weight: bold
       font-size: 14px
