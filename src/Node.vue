@@ -1,6 +1,6 @@
 <template lang="pug">
 .node(:class="[selected(), node.name] | kebab")
-  .title(class="tooltip") {{node.name}} <span class="node_info" @mouseover="hover = node.name" @mouseleave="hover = null">?</span>
+  .title(class="tooltip") {{node.name}} <span  v-if="typeof node.description !== 'undefined' && node.description.length > 0 " class="node_info" @mouseover="hover = node.name" @mouseleave="hover = null">?</span>
     <div class="node-tooltip tooltiptext" v-if="hover === node.name">
       <div class="node_description">{{node.description}}</div>
     </div>
@@ -82,12 +82,12 @@ export default {
     height: 18px
     width: 18px
     border-radius: 50%
-    border: 3px solid #ffffff
+    border: 2px solid #ffffff
     text-align: center
     display: inline-block
-    padding-top: 0px
-    font-weight: bold
+    padding-bottom: 0px
     margin-left: 5px
+    font-size: 15px
   .output
     text-align: right
   .input
