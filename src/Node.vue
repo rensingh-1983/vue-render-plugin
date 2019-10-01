@@ -1,8 +1,8 @@
 <template lang="pug">
 .node(:class="[selected(), node.name] | kebab")
-  .title(class="tooltip") {{node.name}} <span  v-if="typeof node.description !== 'undefined' && node.description.length > 0 " class="node_info"  v-tooltip.top="node.description">?</span>
+  .title(class="tooltip") {{node.name}} <span  v-if="typeof node.description !== 'undefined' && node.description.length > 0 " class="node_info"  v-tooltip.top="{content: node.description, delay: {show: 1000}}">?</span>
   // Outputs
-  .output(v-for='output in outputs()' :key="output.key" @mouseover="hover = node.name+'_ '+output.name" @mouseleave="hover = null" class="tooltip" v-tooltip.right-start="{ content: '<div>Type: '+output.socket.name+ '</div><div>' + output.description + ' </div>'}")
+  .output(v-for='output in outputs()' :key="output.key" v-tooltip.right-start="{ content: '<div>Type: '+output.socket.name+ '</div><div>' + output.description + ' </div>',delay: {show: 1000}}")
     .output-title(
       :class="output.name"
     ) {{output.name}}
@@ -14,7 +14,7 @@
   )
 
   // Inputs
-  .input(v-for='input in inputs()' :key="input.key" @mouseover="hover = node.name+'_ '+input.name"  @mouseleave="hover = null" class="tooltip" v-tooltip.left-start="{ content: '<div>Type: '+input.socket.name+ '</div><div>' + input.description + ' </div>'}")
+  .input(v-for='input in inputs()' :key="input.key" v-tooltip.left-start="{ content: '<div>Type: '+input.socket.name+ '</div><div>' + input.description + ' </div>',delay: {show: 1000}}")
     Socket(v-socket:input="input", type="input", :socket="input.socket")
     .input-title(
       v-show='!input.showControl()', 
